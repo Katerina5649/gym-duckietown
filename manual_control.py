@@ -80,20 +80,11 @@ def update(dt):
     This function is called at every frame to handle
     movement/stepping and redrawing
     """
-
-    #action = np.array([0.0, 0.0])
-
-    #if key_handler[key.UP]:
-    #    action = np.array([0.44, 0.0])
-    #if key_handler[key.DOWN]:
-    #    action = np.array([-0.44, 0])
-    #if key_handler[key.LEFT]:
-    #    action = np.array([0.35, +1])
-    #if key_handler[key.RIGHT]:
-    #    action = np.array([0.35, -1])
-    #if key_handler[key.SPACE]:
-    #    action = np.array([0, 0])
+    
+    #List of possible moving
     action_array = [np.array([0.44, 0.0]), np.array([-0.44, 0]), np.array([0.35, +1]), np.array([0.35, -1])]
+    
+    #Choose the random moving
     action = action_array[np.random.randint(4)]
 
     # Speed boost
@@ -103,6 +94,8 @@ def update(dt):
     obs, reward, done, info = env.step(action)
     print('step_count = %s, reward=%.3f' % (env.unwrapped.step_count, reward))
     step = env.unwrapped.step_count
+    
+    #save the image, when car isn't cross the line
     if step % 30 == 0:
         from PIL import Image
         im = Image.fromarray(obs)
@@ -112,6 +105,7 @@ def update(dt):
         print('done!')
         from PIL import Image
         im = Image.fromarray(obs)
+        #save the image, when car crossed the line
         im.save(
             f'/Users/Ekaterina/Desktop/My/Работа/France_LIX/dataset/cross_line/{time.time()}_{done}.png')
         env.reset()
