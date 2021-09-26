@@ -489,7 +489,7 @@ class Simulator(gym.Env):
                 # logger.warning(msg)
                 continue
 
-            invalid = not self._valid_pose(propose_pos, propose_angle, safety_factor=1.3)
+            invalid = not self._valid_pose(propose_pos, propose_angle, safety_factor=1.3)[0]
             if invalid:
                 # msg = 'The spawn was invalid.'
                 # logger.warning(msg)
