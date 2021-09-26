@@ -1,4 +1,4 @@
-# STL_verification
+# STL verification
 
 The main goal of the project was Monitoring STL specification in Perception-based Autonomous Systems for self driving cars . At the beginning of the work, the biggest problem was installing a simulator for controlling the trajectory of cars and collect data.
 
