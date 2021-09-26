@@ -1206,7 +1206,7 @@ class Simulator(gym.Env):
             logger.debug(f'r_pos: {r_pos}')
             logger.debug(f'f_pos: {f_pos}')
 
-        return res
+        return res, (no_collision, all_drivable)
 
     def update_physics(self, action, delta_time=None):
         if delta_time is None:
@@ -1353,8 +1353,9 @@ class Simulator(gym.Env):
 
     def _compute_done_reward(self) -> DoneRewardInfo:
         # If the agent is not in a valid pose (on drivable tiles)
-        if not self._valid_pose(self.cur_pos, self.cur_angle):
-            msg = 'Stopping the simulator because we are at an invalid pose.'
+        done, (no_collision, all_drivable) = self._valid_pose(self.cur_pos, self.cur_angle)
+        if not done:
+            msg = (no_collision, all_drivable)
             logger.info(msg)
             reward = REWARD_INVALID_POSE
             done_code = 'invalid-pose'
