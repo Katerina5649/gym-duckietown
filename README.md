@@ -1,3 +1,24 @@
+# STL_verification
+
+The main goal of the project was Monitoring STL specification in Perception-based Autonomous Systems for self driving cars . At the beginning of the work, the biggest problem was installing a simulator for controlling the trajectory of cars and collect data.
+
+While working, we tried to install and run [Webots](https://cyberbotics.com/) and [Carla](https://carla.org/) simulator, but this step was interrupted due to computer incompatibility. As a result, we decided to work with [gym-duckietown](https://github.com/duckietown/gym-duckietown). This simulator is very easy to install and use. In addition, there are not many installation requirements.
+
+I built specific map for simulator where I created a lot of objects for collision. Everyone can explore that map and drive manually using command below:
+```
+python3 manual_control.py --env-name=Duckietown-loop_pedestrians-v0 --map-name=loop_pedestrians
+```
+For collecting data I wrote script wich drive car straight until the collision or crossing the road board.
+```
+python3 collect_data.py --save-dir ../test_dataset --env-name Duckietown-loop_pedestrians-v0  --map-name=loop_pedestrians 
+```
+as a argument --save-dir program takes path to the folder for saving the data. Script will create in --save-dir 3 folders for images with collision, lefting road and correct position.
+
+
+Below described the instruction and description of the [gym-duckietown](https://github.com/duckietown/gym-duckietown) simulator.
+
+
+
 # Gym-Duckietown
 
 [![Build Status](https://circleci.com/gh/duckietown/gym-duckietown/tree/master.svg?style=shield)](https://circleci.com/gh/duckietown/gym-duckietown/tree/master) [![Docker Hub](https://img.shields.io/docker/pulls/duckietown/gym-duckietown.svg)](https://hub.docker.com/r/duckietown/gym-duckietown)
